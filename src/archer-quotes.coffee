@@ -62,13 +62,14 @@ module.exports = (robot) ->
   robot.hear /temperature|thermostat/i, (msg) ->
     msg.send "the thermostats are becoming sentient!"
 
-  # robot.respond /archer me/i, (msg) ->
-  #   cheerio = require('cheerio')
-  #   # dom = robot.http('http://en.wikiquote.org/wiki/Archer_%28TV_series%29')
-  #   #            .get() (error, result, body) ->
-  #   #              if error
-  #   #                msg.send "Encountered an error :( #{error}"
-  #   #                return
-  #   #              $ = cheerio.load(body)
-  #   #              $('dl')
+  robot.respond /archer me/i, (msg) ->
+    cheerio = require('cheerio')
+    robot.http('http://en.wikiquote.org/wiki/Archer_%28TV_series%29').get() (error, result, body) ->
+      if error
+        msg.send "Encountered an error :( #{error}"
+        return
+      $ = cheerio.load(body)
+      choices = $('dl').map (i, el) ->
+        $(this).text()
+      msg.send msg.random choices
 
