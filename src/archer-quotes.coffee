@@ -27,11 +27,6 @@ sayings =
     "The zone will be one of danger?"
     "https://www.youtube.com/watch?v=siwpn14IE7E"
   ]
-  hadSomething: [
-    "hold on! I had something good for this",
-    "Pam, wait! I had something… what was it? … Uh, something about stripes and solids.",
-    "Oh, good, you caught the, uh, oh wait, I had something good for this... the... 'Pita Predator'."
-  ]
 
 module.exports = (robot) ->
   # TODO read this from an environment variable
@@ -40,9 +35,6 @@ module.exports = (robot) ->
 
   robot.hear /danger|loggin|logins|obsess|life insurance/i, (msg) ->
     msg.send msg.random sayings.dangerZone
-
-  robot.hear /situation|dealing|stress|!/i, (msg) ->
-    msg.send msg.random sayings.hadSomething
 
   robot.hear /ocelot/i, (msg) ->
     msg.send "I've never seen an ocelot!"
