@@ -29,30 +29,33 @@ sayings =
   ]
 
 module.exports = (robot) ->
-  # TODO read this from an environment variable
-  robot.hear /comes|take it slow|swallow|long ride|happy ending|coming out|came|hard/i, (msg) ->
-    msg.send msg.random sayings.phrasing
 
-  robot.hear /danger|loggin|logins|obsess|life insurance/i, (msg) ->
-    msg.send msg.random sayings.dangerZone
+  unless process.env.HUBOT_LESS_ARCHER
 
-  robot.hear /ocelot/i, (msg) ->
-    msg.send "I've never seen an ocelot!"
+    # TODO read this from an environment variable
+    robot.hear /comes|take it slow|swallow|long ride|happy ending|coming out|came|hard/i, (msg) ->
+      msg.send msg.random sayings.phrasing
 
-  robot.hear /karate/i, (msg) ->
-    msg.send "Karate? the Dane Cook of martial arts?"
+    robot.hear /danger|loggin|logins|obsess|life insurance/i, (msg) ->
+      msg.send msg.random sayings.dangerZone
 
-  robot.hear /call girl/i, (msg) ->
-    msg.send "No Cyril, when they're dead, they're just hookers"
+    robot.hear /ocelot/i, (msg) ->
+      msg.send "I've never seen an ocelot!"
 
-  robot.hear /telephone|phone sex/i, (msg) ->
-    msg.send "does internet porn know you're cheating on it?"
+    robot.hear /karate/i, (msg) ->
+      msg.send "Karate? the Dane Cook of martial arts?"
 
-  robot.hear /ruse/i, (msg) ->
-    msg.send "a ruse? brrring brrring ... hi, it's the 1930's, can we have our words and clothes and shitty airplane back?"
+    robot.hear /call girl/i, (msg) ->
+      msg.send "No Cyril, when they're dead, they're just hookers"
 
-  robot.hear /temperature|thermostat/i, (msg) ->
-    msg.send "the thermostats are becoming sentient!"
+    robot.hear /telephone|phone sex/i, (msg) ->
+      msg.send "does internet porn know you're cheating on it?"
+
+    robot.hear /ruse/i, (msg) ->
+      msg.send "a ruse? brrring brrring ... hi, it's the 1930's, can we have our words and clothes and shitty airplane back?"
+
+    robot.hear /temperature|thermostat/i, (msg) ->
+      msg.send "the thermostats are becoming sentient!"
 
   robot.respond /archer me/i, (msg) ->
     cheerio = require('cheerio')
